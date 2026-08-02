@@ -1,0 +1,255 @@
+{
+    "config": {
+        "error": {
+            "account_blocked": "El vostre compte ha estat bloquejat per Verisure. Feu servir 'He oblidat la contrasenya' al lloc web de Verisure per restablir la contrasenya i desbloquejar el compte; després torneu-ho a provar",
+            "invalid_auth": "Nom d'usuari o contrasenya incorrectes",
+            "cannot_connect": "No es pot connectar amb Verisure",
+            "invalid_otp": "Codi de verificació no vàlid",
+            "otp_expired": "El codi de verificació ha caducat — s'enviarà un codi nou",
+            "otp_send_failed": "No s'ha pogut enviar el codi de verificació — torneu-ho a provar",
+            "service_error": "Error del servei Verisure: {error}"
+        },
+        "abort": {
+            "already_configured": "El servei ja està configurat",
+            "reauth_successful": "Reautenticació correcta",
+            "no_refresh_token": "L'inici de sessió ha estat correcte però Verisure no ha retornat un token d'actualització. La integració no pot desar les credencials de manera segura. Torna-ho a provar més tard o comunica-ho si persisteix."
+        },
+        "step": {
+            "reauth_confirm": {
+                "title": "Reautentica Verisure",
+                "description": "La sessió ha caducat. Torneu a introduir la contrasenya per reconnectar.",
+                "data": {
+                    "username": "Nom d'usuari",
+                    "password": "Contrasenya"
+                }
+            },
+            "user": {
+                "data": {
+                    "country": "País",
+                    "username": "Nom d'usuari",
+                    "password": "Contrasenya"
+                },
+                "description": "Inicia la sessió a Verisure.",
+                "title": "Inici de sessió"
+            },
+            "phone_list": {
+                "description": "A quin número de telèfon voleu que enviem el codi per SMS?",
+                "title": "Verisure 2FA",
+                "data": {
+                    "phones": "Número de telèfon"
+                }
+            },
+            "otp_challenge": {
+                "description": "Introduïu el codi que heu rebut al telèfon",
+                "title": "Verisure 2FA"
+            },
+            "select_installation": {
+                "title": "Selecciona la instal·lació",
+                "description": "Seleccioneu la instal·lació que voleu configurar.",
+                "data": {
+                    "installation": "Instal·lació"
+                }
+            },
+            "options": {
+                "title": "Opcions per a {installation_name}",
+                "description": "Configura les opcions de l'alarma.",
+                "sections": {
+                    "activity": {
+                        "name": "Registre d'activitat i esdeveniments",
+                        "data": {
+                            "enable_activity_polling": "Consulta el registre d'activitat un cop per minut en segon pla (per a automatitzacions per esdeveniments)"
+                        }
+                    },
+                    "advanced": {
+                        "name": "Avançat",
+                        "data": {
+                            "scan_interval": "Interval d'actualització en segons (0 desactiva les actualitzacions automàtiques)",
+                            "delay_check_operation": "Retard entre sol·licituds de l'API (s)",
+                            "operation_poll_timeout": "Temps d'espera de confirmació (segons)"
+                        },
+                        "data_description": {
+                            "operation_poll_timeout": "Quant de temps esperar que el panell confirmi una acció d'armat/desarmat. Augmenta'l si reps avisos de temps d'espera esgotat."
+                        }
+                    },
+                    "pin": {
+                        "name": "Codi PIN per desarmar",
+                        "data": {
+                            "code": "Codi PIN (deixeu-lo buit per no usar cap PIN)",
+                            "code_arm_required": "Requerir també el codi PIN (si n'hi ha) per armar l'alarma"
+                        }
+                    },
+                    "notifications": {
+                        "name": "Notificacions d'armat forçat",
+                        "data": {
+                            "notify_group": "Servei de notificació per a excepcions en armar (p. ex. mobile_app_phone)",
+                            "force_arm_notifications": "Notificacions integrades d'armat forçat (desactiveu-les per usar les vostres automatitzacions)"
+                        }
+                    },
+                    "subpanels": {
+                        "name": "Sub-panells addicionals",
+                        "data": {
+                            "enable_perimeter_panel": "Activar el panell de control només Perímetre",
+                            "enable_annex_panel": "Activar el panell de control només Annex",
+                            "enable_interior_panel": "Activar el panell de control només Interior"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "title": "Assignació d'estats de l'alarma",
+                "description": "Aquestes assignacions s'apliquen només al panell principal. Assigneu cada acció d'alarma de Home Assistant a un mode d'alarma de Verisure; deixeu un camp en blanc per amagar aquest botó.{subpanels_note}",
+                "data": {
+                    "map_home": "Casa",
+                    "map_away": "Fora",
+                    "map_night": "Nit",
+                    "map_vacation": "Vacances",
+                    "map_custom": "Personalitzat"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "sections": {
+                    "activity": {
+                        "name": "Registre d'activitat i esdeveniments",
+                        "data": {
+                            "enable_activity_polling": "Consulta el registre d'activitat un cop per minut en segon pla (per a automatitzacions per esdeveniments)"
+                        }
+                    },
+                    "advanced": {
+                        "name": "Avançat",
+                        "data": {
+                            "scan_interval": "Interval d'actualització en segons (0 desactiva les actualitzacions automàtiques)",
+                            "delay_check_operation": "Retard entre sol·licituds de l'API (s)",
+                            "operation_poll_timeout": "Temps d'espera de confirmació (segons)"
+                        },
+                        "data_description": {
+                            "operation_poll_timeout": "Quant de temps esperar que el panell confirmi una acció d'armat/desarmat. Augmenta'l si reps avisos de temps d'espera esgotat."
+                        }
+                    },
+                    "pin": {
+                        "name": "Codi PIN per desarmar",
+                        "data": {
+                            "code": "Codi PIN (deixeu-lo buit per no usar cap PIN)",
+                            "code_arm_required": "Requerir també el codi PIN (si n'hi ha) per armar l'alarma"
+                        }
+                    },
+                    "notifications": {
+                        "name": "Notificacions d'armat forçat",
+                        "data": {
+                            "notify_group": "Servei de notificació per a excepcions en armar (p. ex. mobile_app_phone)",
+                            "force_arm_notifications": "Notificacions integrades d'armat forçat (desactiveu-les per usar les vostres automatitzacions)"
+                        }
+                    },
+                    "subpanels": {
+                        "name": "Sub-panells addicionals",
+                        "data": {
+                            "enable_perimeter_panel": "Activar el panell de control només Perímetre",
+                            "enable_annex_panel": "Activar el panell de control només Annex",
+                            "enable_interior_panel": "Activar el panell de control només Interior"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "title": "Assignació d'estats de l'alarma",
+                "description": "Aquestes assignacions s'apliquen només al panell principal. Assigneu cada acció d'alarma de Home Assistant a un mode d'alarma de Verisure; deixeu un camp en blanc per amagar aquest botó.{subpanels_note}",
+                "data": {
+                    "map_home": "Casa",
+                    "map_away": "Fora",
+                    "map_night": "Nit",
+                    "map_vacation": "Vacances",
+                    "map_custom": "Personalitzat"
+                }
+            },
+            "lock_automations": {
+                "title": "Automatització del pany",
+                "description": "Configureu el comportament automàtic de tancament i desarmament per a cada pany.\n\n⚠️ Desactiveu primer el bloqueig automàtic a l'aplicació de Verisure: el seu bloqueig automàtic per temporitzador entra en conflicte amb el tancament en armar d'aquesta integració.\n\nNota: això difereix de l'aplicació de Verisure. L'aplicació desbloqueja el pany quan es desarma l'alarma; aquesta integració, en canvi, desarma l'alarma quan es desbloqueja el pany, i només quan es desbloqueja des de Home Assistant.",
+                "sections": {
+                    "lock__01": {
+                        "name": "{lock_alias_01}",
+                        "data": {
+                            "lock_on_arm__interior": "Tanca automàticament en armar l'alarma Interior",
+                            "lock_on_arm__perimeter": "Tanca automàticament en armar l'alarma Perímetre",
+                            "lock_on_arm__annex": "Tanca automàticament en armar l'alarma Annex",
+                            "unlock_disarms__interior": "Desarma l'alarma Interior abans de tornar a obrir",
+                            "unlock_disarms__perimeter": "Desarma l'alarma Perímetre abans de tornar a obrir",
+                            "unlock_disarms__annex": "Desarma l'alarma Annex abans de tornar a obrir"
+                        }
+                    },
+                    "lock__02": {
+                        "name": "{lock_alias_02}",
+                        "data": {
+                            "lock_on_arm__interior": "Tanca automàticament en armar l'alarma Interior",
+                            "lock_on_arm__perimeter": "Tanca automàticament en armar l'alarma Perímetre",
+                            "lock_on_arm__annex": "Tanca automàticament en armar l'alarma Annex",
+                            "unlock_disarms__interior": "Desarma l'alarma Interior abans de tornar a obrir",
+                            "unlock_disarms__perimeter": "Desarma l'alarma Perímetre abans de tornar a obrir",
+                            "unlock_disarms__annex": "Desarma l'alarma Annex abans de tornar a obrir"
+                        }
+                    },
+                    "lock__03": {
+                        "name": "{lock_alias_03}",
+                        "data": {
+                            "lock_on_arm__interior": "Tanca automàticament en armar l'alarma Interior",
+                            "lock_on_arm__perimeter": "Tanca automàticament en armar l'alarma Perímetre",
+                            "lock_on_arm__annex": "Tanca automàticament en armar l'alarma Annex",
+                            "unlock_disarms__interior": "Desarma l'alarma Interior abans de tornar a obrir",
+                            "unlock_disarms__perimeter": "Desarma l'alarma Perímetre abans de tornar a obrir",
+                            "unlock_disarms__annex": "Desarma l'alarma Annex abans de tornar a obrir"
+                        }
+                    },
+                    "lock__04": {
+                        "name": "{lock_alias_04}",
+                        "data": {
+                            "lock_on_arm__interior": "Tanca automàticament en armar l'alarma Interior",
+                            "lock_on_arm__perimeter": "Tanca automàticament en armar l'alarma Perímetre",
+                            "lock_on_arm__annex": "Tanca automàticament en armar l'alarma Annex",
+                            "unlock_disarms__interior": "Desarma l'alarma Interior abans de tornar a obrir",
+                            "unlock_disarms__perimeter": "Desarma l'alarma Perímetre abans de tornar a obrir",
+                            "unlock_disarms__annex": "Desarma l'alarma Annex abans de tornar a obrir"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "force_arm": {
+            "name": "Força l'armat",
+            "description": "Obsolet — utilitza `verisure_owa.force_arm` en lloc d'aquest.\n\nForça l'armat de l'alarma, ignorant les excepcions no bloquejants (p. ex. finestres obertes) d'un intent d'armat fallit anterior.",
+            "fields": {
+                "code": {
+                    "name": "Codi PIN",
+                    "description": "Opcional. Si es proporciona, es valida amb el PIN configurat abans de completar l'armat forçat. La majoria de les crides no el necessiten — l'intent d'armat anterior que va produir el context d'armat forçat ja va validar el PIN."
+                }
+            }
+        },
+        "force_arm_cancel": {
+            "name": "Cancel·la l'armat forçat",
+            "description": "Obsolet — utilitza `verisure_owa.force_arm_cancel` en lloc d'aquest.\n\nCancel·la un armat forçat pendent i descarta la notificació d'excepció d'armat."
+        }
+    },
+    "exceptions": {
+        "invalid_pin_code": {
+            "message": "Codi PIN no vàlid per a {entity_id}"
+        },
+        "unsupported_alarm_mode": {
+            "message": "Aquest mode d'alarma no és compatible amb el teu panell (rebutjat: {tried}). Revisa les assignacions d'estat a les opcions de la integració (Configuració → Dispositius i serveis → Verisure → Configurar)."
+        },
+        "unsupported_alarm_mode_subpanel": {
+            "message": "Aquest mode d'alarma no és compatible amb el teu panell (rebutjat: {tried}). S'ha desactivat en aquest subpanell i no es tornarà a oferir."
+        },
+        "no_supported_command": {
+            "message": "No s'ha trobat cap ordre compatible per a aquest panell. Revisa les assignacions d'estat a les opcions de la integració (Configuració → Dispositius i serveis → Verisure → Configurar)."
+        }
+    },
+    "issues": {
+        "orphan_verisure_owa_directory": {
+            "title": "Carpeta verisure_owa sobrant",
+            "description": "S'ha trobat una carpeta obsoleta `verisure_owa` a `{path}` d'una actualització anterior. Ja no fa res i es pot esborrar amb seguretat. Elimina-la i reinicia Home Assistant per amagar aquest avís."
+        }
+    }
+}

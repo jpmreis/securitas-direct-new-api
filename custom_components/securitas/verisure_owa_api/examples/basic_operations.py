@@ -1,14 +1,16 @@
-"""Basic example for securitas_direct_new_api."""
+"""Basic example for verisure_owa_api."""
 
 import asyncio
 import logging
 from uuid import uuid4
 
 import aiohttp
-from securitas_direct_new_api import (
+from verisure_owa_api import (
     _LOGGER,
-    ApiManager,
-    SecuritasDirectError,
+    VerisureOwaClient,
+    HttpTransport,
+    ApiDomains,
+    VerisureOwaError,
     generate_device_id,
     generate_uuid,
 )
@@ -20,26 +22,18 @@ async def do_stuff(client):
     print("*** Installations ***\n", installations)
 
     for installation in installations:
-        general_status = await client.check_general_status(installation)
+        general_status = await client.get_general_status(installation)
         print("*** General status ***\n", general_status)
 
-        reference_id = await client.check_alarm(installation)
-        print("*** Reference ID ***\n", reference_id)
-
-        status = await client.check_alarm_status(installation, reference_id)
+        status = await client.check_alarm(installation)
         print("*** Alarm status ***\n", status)
 
-        services = await client.get_all_services(installation)
+        services = await client.get_services(installation)
         print("*** Services ***\n", services)
-
-        # for service in services:
-        #     sentinel_data = await client.get_sentinel_data(
-        #         installation, service
-        #     )
 
 
 async def main():
-    """Run Basic Securitas Direct example."""
+    """Run Basic Verisure OWA example."""
 
     _LOGGER.setLevel(10)
     _LOGGER.addHandler(logging.StreamHandler())
@@ -49,32 +43,33 @@ async def main():
     country = "ES"
     async with aiohttp.ClientSession() as aiohttp_session:
         uuid = generate_uuid()
-        device_id = generate_device_id(country)
+        device_id = generate_device_id()
         id_device_indigitall = str(uuid4())
-        client = ApiManager(
-            user,
-            password,
-            country,
-            aiohttp_session,
-            device_id,
-            uuid,
-            id_device_indigitall,
-            2,
+        api_domains = ApiDomains()
+        transport = HttpTransport(
+            session=aiohttp_session,
+            base_url=api_domains.get_url(country),
+        )
+        client = VerisureOwaClient(
+            transport=transport,
+            country=country,
+            language=api_domains.get_language(country),
+            username=user,
+            password=password,
+            device_id=device_id,
+            uuid=uuid,
+            id_device_indigitall=id_device_indigitall,
         )
 
         try:
             await client.login()
             print("*** Login ***", client.authentication_token)
 
-            # token = await client.refresh_token()
-            # print("Refresh token ***\n", token)
-            # return
-
             while True:
                 await do_stuff(client)
                 await asyncio.sleep(60)
 
-        except SecuritasDirectError as err:
+        except VerisureOwaError as err:
             print(f"Error: {err.args}")
 
 

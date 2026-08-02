@@ -1,0 +1,255 @@
+{
+    "config": {
+        "error": {
+            "account_blocked": "Il tuo account è stato bloccato da Verisure. Usa 'Password dimenticata' sul sito Verisure per reimpostare la password e sbloccare il tuo account, poi riprova",
+            "invalid_auth": "Nome utente o password non validi",
+            "cannot_connect": "Impossibile connettersi a Verisure",
+            "invalid_otp": "Codice di verifica non valido",
+            "otp_expired": "Il codice di verifica è scaduto — verrà inviato un nuovo codice",
+            "otp_send_failed": "Invio del codice di verifica non riuscito — riprova",
+            "service_error": "Errore del servizio Verisure: {error}"
+        },
+        "abort": {
+            "already_configured": "Il servizio è già configurato",
+            "reauth_successful": "Riautenticazione riuscita",
+            "no_refresh_token": "Il login è riuscito ma Verisure non ha restituito un token di aggiornamento. L'integrazione non può salvare le credenziali in modo sicuro. Riprova più tardi o segnala il problema se persiste."
+        },
+        "step": {
+            "reauth_confirm": {
+                "title": "Riautenticazione Verisure",
+                "description": "La sessione è scaduta. Inserisci nuovamente la password per riconnetterti.",
+                "data": {
+                    "username": "Nome utente",
+                    "password": "Password"
+                }
+            },
+            "user": {
+                "data": {
+                    "country": "Codice paese",
+                    "username": "Nome utente",
+                    "password": "Password"
+                },
+                "description": "Accedi a Verisure.",
+                "title": "Accesso"
+            },
+            "phone_list": {
+                "description": "A quale numero di telefono dobbiamo inviare il codice via SMS?",
+                "title": "Verisure 2FA",
+                "data": {
+                    "phones": "Numero di telefono"
+                }
+            },
+            "otp_challenge": {
+                "description": "Inserisci il codice ricevuto sul tuo telefono",
+                "title": "Verisure 2FA"
+            },
+            "select_installation": {
+                "title": "Seleziona installazione",
+                "description": "Seleziona l'installazione da configurare.",
+                "data": {
+                    "installation": "Installazione"
+                }
+            },
+            "options": {
+                "title": "Opzioni per {installation_name}",
+                "description": "Configura le opzioni dell'allarme.",
+                "sections": {
+                    "activity": {
+                        "name": "Registro attività ed eventi",
+                        "data": {
+                            "enable_activity_polling": "Interroga il registro attività una volta al minuto in background (per le automazioni basate su eventi)"
+                        }
+                    },
+                    "advanced": {
+                        "name": "Avanzato",
+                        "data": {
+                            "scan_interval": "Intervallo di aggiornamento in secondi (0 disattiva gli aggiornamenti automatici)",
+                            "delay_check_operation": "Ritardo tra le richieste API (sec)",
+                            "operation_poll_timeout": "Timeout di conferma operazione (secondi)"
+                        },
+                        "data_description": {
+                            "operation_poll_timeout": "Per quanto tempo attendere che la centrale confermi un'azione di inserimento/disinserimento. Aumentalo se ricevi avvisi di timeout."
+                        }
+                    },
+                    "pin": {
+                        "name": "Codice PIN per disattivare",
+                        "data": {
+                            "code": "Codice PIN (lasciare vuoto per non usare un PIN)",
+                            "code_arm_required": "Richiedere anche il codice PIN (se presente) per attivare l'allarme"
+                        }
+                    },
+                    "notifications": {
+                        "name": "Notifiche di attivazione forzata",
+                        "data": {
+                            "notify_group": "Servizio di notifica per eccezioni di attivazione (es. mobile_app_phone)",
+                            "force_arm_notifications": "Notifiche integrate di attivazione forzata (disattivare per usare le proprie automazioni)"
+                        }
+                    },
+                    "subpanels": {
+                        "name": "Sotto-pannelli aggiuntivi",
+                        "data": {
+                            "enable_perimeter_panel": "Attiva pannello di controllo solo Perimetrale",
+                            "enable_annex_panel": "Attiva pannello di controllo solo Annesso",
+                            "enable_interior_panel": "Attiva pannello di controllo solo Interno"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "title": "Mappatura degli stati di allarme",
+                "description": "Queste associazioni si applicano solo al pannello principale. Associa ogni azione di allarme di Home Assistant a una modalità di allarme Verisure; lascia un campo vuoto per nascondere quel pulsante.{subpanels_note}",
+                "data": {
+                    "map_home": "Casa",
+                    "map_away": "Fuori casa",
+                    "map_night": "Notte",
+                    "map_vacation": "Vacanza",
+                    "map_custom": "Personalizzato"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "sections": {
+                    "activity": {
+                        "name": "Registro attività ed eventi",
+                        "data": {
+                            "enable_activity_polling": "Interroga il registro attività una volta al minuto in background (per le automazioni basate su eventi)"
+                        }
+                    },
+                    "advanced": {
+                        "name": "Avanzato",
+                        "data": {
+                            "scan_interval": "Intervallo di aggiornamento in secondi (0 disattiva gli aggiornamenti automatici)",
+                            "delay_check_operation": "Ritardo tra le richieste API (sec)",
+                            "operation_poll_timeout": "Timeout di conferma operazione (secondi)"
+                        },
+                        "data_description": {
+                            "operation_poll_timeout": "Per quanto tempo attendere che la centrale confermi un'azione di inserimento/disinserimento. Aumentalo se ricevi avvisi di timeout."
+                        }
+                    },
+                    "pin": {
+                        "name": "Codice PIN per disattivare",
+                        "data": {
+                            "code": "Codice PIN (lasciare vuoto per non usare un PIN)",
+                            "code_arm_required": "Richiedere anche il codice PIN (se presente) per attivare l'allarme"
+                        }
+                    },
+                    "notifications": {
+                        "name": "Notifiche di attivazione forzata",
+                        "data": {
+                            "notify_group": "Servizio di notifica per eccezioni di attivazione (es. mobile_app_phone)",
+                            "force_arm_notifications": "Notifiche integrate di attivazione forzata (disattivare per usare le proprie automazioni)"
+                        }
+                    },
+                    "subpanels": {
+                        "name": "Sotto-pannelli aggiuntivi",
+                        "data": {
+                            "enable_perimeter_panel": "Attiva pannello di controllo solo Perimetrale",
+                            "enable_annex_panel": "Attiva pannello di controllo solo Annesso",
+                            "enable_interior_panel": "Attiva pannello di controllo solo Interno"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "title": "Mappatura degli stati di allarme",
+                "description": "Queste associazioni si applicano solo al pannello principale. Associa ogni azione di allarme di Home Assistant a una modalità di allarme Verisure; lascia un campo vuoto per nascondere quel pulsante.{subpanels_note}",
+                "data": {
+                    "map_home": "Casa",
+                    "map_away": "Fuori casa",
+                    "map_night": "Notte",
+                    "map_vacation": "Vacanza",
+                    "map_custom": "Personalizzato"
+                }
+            },
+            "lock_automations": {
+                "title": "Automazione delle serrature",
+                "description": "Configura il comportamento automatico di blocco e disattivazione per ciascuna serratura.\n\n⚠️ Disattiva prima il blocco automatico nell'app Verisure: il suo blocco automatico a tempo va in conflitto con il blocco all'attivazione di questa integrazione.\n\nNota: questo è diverso dall'app Verisure. L'app sblocca la serratura quando l'allarme viene disattivato; questa integrazione invece disattiva l'allarme quando la serratura viene sbloccata, e solo quando viene sbloccata da Home Assistant.",
+                "sections": {
+                    "lock__01": {
+                        "name": "{lock_alias_01}",
+                        "data": {
+                            "lock_on_arm__interior": "Blocca automaticamente all'attivazione dell'allarme Interno",
+                            "lock_on_arm__perimeter": "Blocca automaticamente all'attivazione dell'allarme Perimetrale",
+                            "lock_on_arm__annex": "Blocca automaticamente all'attivazione dell'allarme Annesso",
+                            "unlock_disarms__interior": "Disattiva l'allarme Interno prima di sbloccare",
+                            "unlock_disarms__perimeter": "Disattiva l'allarme Perimetrale prima di sbloccare",
+                            "unlock_disarms__annex": "Disattiva l'allarme Annesso prima di sbloccare"
+                        }
+                    },
+                    "lock__02": {
+                        "name": "{lock_alias_02}",
+                        "data": {
+                            "lock_on_arm__interior": "Blocca automaticamente all'attivazione dell'allarme Interno",
+                            "lock_on_arm__perimeter": "Blocca automaticamente all'attivazione dell'allarme Perimetrale",
+                            "lock_on_arm__annex": "Blocca automaticamente all'attivazione dell'allarme Annesso",
+                            "unlock_disarms__interior": "Disattiva l'allarme Interno prima di sbloccare",
+                            "unlock_disarms__perimeter": "Disattiva l'allarme Perimetrale prima di sbloccare",
+                            "unlock_disarms__annex": "Disattiva l'allarme Annesso prima di sbloccare"
+                        }
+                    },
+                    "lock__03": {
+                        "name": "{lock_alias_03}",
+                        "data": {
+                            "lock_on_arm__interior": "Blocca automaticamente all'attivazione dell'allarme Interno",
+                            "lock_on_arm__perimeter": "Blocca automaticamente all'attivazione dell'allarme Perimetrale",
+                            "lock_on_arm__annex": "Blocca automaticamente all'attivazione dell'allarme Annesso",
+                            "unlock_disarms__interior": "Disattiva l'allarme Interno prima di sbloccare",
+                            "unlock_disarms__perimeter": "Disattiva l'allarme Perimetrale prima di sbloccare",
+                            "unlock_disarms__annex": "Disattiva l'allarme Annesso prima di sbloccare"
+                        }
+                    },
+                    "lock__04": {
+                        "name": "{lock_alias_04}",
+                        "data": {
+                            "lock_on_arm__interior": "Blocca automaticamente all'attivazione dell'allarme Interno",
+                            "lock_on_arm__perimeter": "Blocca automaticamente all'attivazione dell'allarme Perimetrale",
+                            "lock_on_arm__annex": "Blocca automaticamente all'attivazione dell'allarme Annesso",
+                            "unlock_disarms__interior": "Disattiva l'allarme Interno prima di sbloccare",
+                            "unlock_disarms__perimeter": "Disattiva l'allarme Perimetrale prima di sbloccare",
+                            "unlock_disarms__annex": "Disattiva l'allarme Annesso prima di sbloccare"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "force_arm": {
+            "name": "Forzare attivazione",
+            "description": "Deprecato — usa `verisure_owa.force_arm` al suo posto.\n\nForzare l'attivazione dell'allarme, ignorando le eccezioni non bloccanti (es. finestre aperte) da un precedente tentativo di attivazione fallito.",
+            "fields": {
+                "code": {
+                    "name": "Codice PIN",
+                    "description": "Opzionale. Se fornito, viene convalidato con il PIN configurato prima di completare l'attivazione forzata. La maggior parte dei chiamanti non ne ha bisogno — il precedente tentativo di attivazione che ha generato il contesto di attivazione forzata ha già convalidato il PIN."
+                }
+            }
+        },
+        "force_arm_cancel": {
+            "name": "Annullare attivazione forzata",
+            "description": "Deprecato — usa `verisure_owa.force_arm_cancel` al suo posto.\n\nAnnullare un'attivazione forzata in sospeso e chiudere la notifica di eccezione di attivazione."
+        }
+    },
+    "exceptions": {
+        "invalid_pin_code": {
+            "message": "Codice PIN non valido per {entity_id}"
+        },
+        "unsupported_alarm_mode": {
+            "message": "Questa modalità di allarme non è supportata dal tuo pannello (rifiutato: {tried}). Controlla le mappature degli stati nelle opzioni dell'integrazione (Impostazioni → Dispositivi e servizi → Verisure OWA → Configura)."
+        },
+        "unsupported_alarm_mode_subpanel": {
+            "message": "Questa modalità di allarme non è supportata dal tuo pannello (rifiutato: {tried}). È stata disattivata su questo sotto-pannello e non sarà più proposta."
+        },
+        "no_supported_command": {
+            "message": "Nessun comando compatibile trovato per questo pannello. Controlla le mappature degli stati nelle opzioni dell'integrazione (Impostazioni → Dispositivi e servizi → Verisure OWA → Configura)."
+        }
+    },
+    "issues": {
+        "orphan_verisure_owa_directory": {
+            "title": "Cartella verisure_owa obsoleta",
+            "description": "Una cartella obsoleta `verisure_owa` è rimasta in `{path}` da un precedente aggiornamento. Non fa più nulla e può essere eliminata in sicurezza. Eliminala e riavvia Home Assistant per rimuovere questo avviso."
+        }
+    }
+}

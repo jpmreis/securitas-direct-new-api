@@ -1,0 +1,255 @@
+{
+    "config": {
+        "error": {
+            "account_blocked": "Votre compte a été bloqué par Verisure. Utilisez « Mot de passe oublié » sur le site Verisure pour réinitialiser votre mot de passe et débloquer votre compte, puis réessayez",
+            "invalid_auth": "Nom d'utilisateur ou mot de passe incorrect",
+            "cannot_connect": "Impossible de se connecter à Verisure",
+            "invalid_otp": "Code de vérification non valide",
+            "otp_expired": "Le code de vérification a expiré — un nouveau code sera envoyé",
+            "otp_send_failed": "Échec de l'envoi du code de vérification — veuillez réessayer",
+            "service_error": "Erreur du service Verisure : {error}"
+        },
+        "abort": {
+            "already_configured": "Le service est déjà configuré",
+            "reauth_successful": "Réauthentification réussie",
+            "no_refresh_token": "La connexion a réussi mais Verisure n'a pas renvoyé de jeton d'actualisation. L'intégration ne peut pas enregistrer les identifiants en toute sécurité. Veuillez réessayer plus tard ou signaler le problème s'il persiste."
+        },
+        "step": {
+            "reauth_confirm": {
+                "title": "Réauthentifier Verisure",
+                "description": "Votre session a expiré. Veuillez saisir à nouveau votre mot de passe pour vous reconnecter.",
+                "data": {
+                    "username": "Nom d'utilisateur",
+                    "password": "Mot de passe"
+                }
+            },
+            "user": {
+                "data": {
+                    "country": "Code pays",
+                    "username": "Nom d'utilisateur",
+                    "password": "Mot de passe"
+                },
+                "description": "Connexion à Verisure.",
+                "title": "Connexion"
+            },
+            "phone_list": {
+                "description": "À quel numéro de téléphone devons-nous envoyer le code par SMS ?",
+                "title": "Verisure 2FA",
+                "data": {
+                    "phones": "Numéro de téléphone"
+                }
+            },
+            "otp_challenge": {
+                "description": "Entrez le code reçu sur votre téléphone",
+                "title": "Verisure 2FA"
+            },
+            "select_installation": {
+                "title": "Sélectionner l'installation",
+                "description": "Sélectionnez l'installation à configurer.",
+                "data": {
+                    "installation": "Installation"
+                }
+            },
+            "options": {
+                "title": "Options pour {installation_name}",
+                "description": "Configurer les options de l'alarme.",
+                "sections": {
+                    "activity": {
+                        "name": "Journal d'activité et événements",
+                        "data": {
+                            "enable_activity_polling": "Interroger le journal d'activité une fois par minute en arrière-plan (pour les automatisations par événements)"
+                        }
+                    },
+                    "advanced": {
+                        "name": "Avancé",
+                        "data": {
+                            "scan_interval": "Intervalle de mise à jour en secondes (0 désactive les mises à jour automatiques)",
+                            "delay_check_operation": "Délai entre les requêtes API (sec)",
+                            "operation_poll_timeout": "Délai d'attente de confirmation (secondes)"
+                        },
+                        "data_description": {
+                            "operation_poll_timeout": "Durée d'attente de la confirmation d'une action d'armement/désarmement par le panneau. Augmentez-la si vous recevez des avertissements de délai dépassé."
+                        }
+                    },
+                    "pin": {
+                        "name": "Code PIN pour désarmer",
+                        "data": {
+                            "code": "Code PIN (laisser vide pour ne pas utiliser de PIN)",
+                            "code_arm_required": "Exiger également le code PIN (s'il y en a un) pour armer l'alarme"
+                        }
+                    },
+                    "notifications": {
+                        "name": "Notifications d'armement forcé",
+                        "data": {
+                            "notify_group": "Service de notification pour les exceptions d'armement (ex. mobile_app_phone)",
+                            "force_arm_notifications": "Notifications intégrées de forçage d'armement (désactiver pour utiliser vos propres automatisations)"
+                        }
+                    },
+                    "subpanels": {
+                        "name": "Sous-panneaux supplémentaires",
+                        "data": {
+                            "enable_perimeter_panel": "Activer le panneau de contrôle Périmètre uniquement",
+                            "enable_annex_panel": "Activer le panneau de contrôle Annexe uniquement",
+                            "enable_interior_panel": "Activer le panneau de contrôle Intérieur uniquement"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "title": "Correspondance des états d'alarme",
+                "description": "Ces associations ne concernent que le panneau principal. Associez chaque action d'alarme Home Assistant à un mode d'alarme Verisure ; videz un champ pour masquer ce bouton.{subpanels_note}",
+                "data": {
+                    "map_home": "Maison",
+                    "map_away": "Absent",
+                    "map_night": "Nuit",
+                    "map_vacation": "Vacances",
+                    "map_custom": "Personnalisé"
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "sections": {
+                    "activity": {
+                        "name": "Journal d'activité et événements",
+                        "data": {
+                            "enable_activity_polling": "Interroger le journal d'activité une fois par minute en arrière-plan (pour les automatisations par événements)"
+                        }
+                    },
+                    "advanced": {
+                        "name": "Avancé",
+                        "data": {
+                            "scan_interval": "Intervalle de mise à jour en secondes (0 désactive les mises à jour automatiques)",
+                            "delay_check_operation": "Délai entre les requêtes API (sec)",
+                            "operation_poll_timeout": "Délai d'attente de confirmation (secondes)"
+                        },
+                        "data_description": {
+                            "operation_poll_timeout": "Durée d'attente de la confirmation d'une action d'armement/désarmement par le panneau. Augmentez-la si vous recevez des avertissements de délai dépassé."
+                        }
+                    },
+                    "pin": {
+                        "name": "Code PIN pour désarmer",
+                        "data": {
+                            "code": "Code PIN (laisser vide pour ne pas utiliser de PIN)",
+                            "code_arm_required": "Exiger également le code PIN (s'il y en a un) pour armer l'alarme"
+                        }
+                    },
+                    "notifications": {
+                        "name": "Notifications d'armement forcé",
+                        "data": {
+                            "notify_group": "Service de notification pour les exceptions d'armement (ex. mobile_app_phone)",
+                            "force_arm_notifications": "Notifications intégrées de forçage d'armement (désactiver pour utiliser vos propres automatisations)"
+                        }
+                    },
+                    "subpanels": {
+                        "name": "Sous-panneaux supplémentaires",
+                        "data": {
+                            "enable_perimeter_panel": "Activer le panneau de contrôle Périmètre uniquement",
+                            "enable_annex_panel": "Activer le panneau de contrôle Annexe uniquement",
+                            "enable_interior_panel": "Activer le panneau de contrôle Intérieur uniquement"
+                        }
+                    }
+                }
+            },
+            "mappings": {
+                "title": "Correspondance des états d'alarme",
+                "description": "Ces associations ne concernent que le panneau principal. Associez chaque action d'alarme Home Assistant à un mode d'alarme Verisure ; videz un champ pour masquer ce bouton.{subpanels_note}",
+                "data": {
+                    "map_home": "Maison",
+                    "map_away": "Absent",
+                    "map_night": "Nuit",
+                    "map_vacation": "Vacances",
+                    "map_custom": "Personnalisé"
+                }
+            },
+            "lock_automations": {
+                "title": "Automatisation des serrures",
+                "description": "Configurez le comportement automatique de verrouillage et de désarmement pour chaque serrure.\n\n⚠️ Désactivez d'abord le verrouillage automatique dans l'application Verisure : son verrouillage automatique par minuterie entre en conflit avec le verrouillage à l'armement de cette intégration.\n\nRemarque : ceci diffère de l'application Verisure. L'application déverrouille la serrure lorsque l'alarme est désarmée ; cette intégration, au contraire, désarme l'alarme lorsque la serrure est déverrouillée, et uniquement lorsqu'elle est déverrouillée depuis Home Assistant.",
+                "sections": {
+                    "lock__01": {
+                        "name": "{lock_alias_01}",
+                        "data": {
+                            "lock_on_arm__interior": "Verrouiller automatiquement lors de l'armement de l'alarme Intérieur",
+                            "lock_on_arm__perimeter": "Verrouiller automatiquement lors de l'armement de l'alarme Périmètre",
+                            "lock_on_arm__annex": "Verrouiller automatiquement lors de l'armement de l'alarme Annexe",
+                            "unlock_disarms__interior": "Désarmer l'alarme Intérieur avant le déverrouillage",
+                            "unlock_disarms__perimeter": "Désarmer l'alarme Périmètre avant le déverrouillage",
+                            "unlock_disarms__annex": "Désarmer l'alarme Annexe avant le déverrouillage"
+                        }
+                    },
+                    "lock__02": {
+                        "name": "{lock_alias_02}",
+                        "data": {
+                            "lock_on_arm__interior": "Verrouiller automatiquement lors de l'armement de l'alarme Intérieur",
+                            "lock_on_arm__perimeter": "Verrouiller automatiquement lors de l'armement de l'alarme Périmètre",
+                            "lock_on_arm__annex": "Verrouiller automatiquement lors de l'armement de l'alarme Annexe",
+                            "unlock_disarms__interior": "Désarmer l'alarme Intérieur avant le déverrouillage",
+                            "unlock_disarms__perimeter": "Désarmer l'alarme Périmètre avant le déverrouillage",
+                            "unlock_disarms__annex": "Désarmer l'alarme Annexe avant le déverrouillage"
+                        }
+                    },
+                    "lock__03": {
+                        "name": "{lock_alias_03}",
+                        "data": {
+                            "lock_on_arm__interior": "Verrouiller automatiquement lors de l'armement de l'alarme Intérieur",
+                            "lock_on_arm__perimeter": "Verrouiller automatiquement lors de l'armement de l'alarme Périmètre",
+                            "lock_on_arm__annex": "Verrouiller automatiquement lors de l'armement de l'alarme Annexe",
+                            "unlock_disarms__interior": "Désarmer l'alarme Intérieur avant le déverrouillage",
+                            "unlock_disarms__perimeter": "Désarmer l'alarme Périmètre avant le déverrouillage",
+                            "unlock_disarms__annex": "Désarmer l'alarme Annexe avant le déverrouillage"
+                        }
+                    },
+                    "lock__04": {
+                        "name": "{lock_alias_04}",
+                        "data": {
+                            "lock_on_arm__interior": "Verrouiller automatiquement lors de l'armement de l'alarme Intérieur",
+                            "lock_on_arm__perimeter": "Verrouiller automatiquement lors de l'armement de l'alarme Périmètre",
+                            "lock_on_arm__annex": "Verrouiller automatiquement lors de l'armement de l'alarme Annexe",
+                            "unlock_disarms__interior": "Désarmer l'alarme Intérieur avant le déverrouillage",
+                            "unlock_disarms__perimeter": "Désarmer l'alarme Périmètre avant le déverrouillage",
+                            "unlock_disarms__annex": "Désarmer l'alarme Annexe avant le déverrouillage"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "services": {
+        "force_arm": {
+            "name": "Forcer l'armement",
+            "description": "Déprécié — utilisez `verisure_owa.force_arm` à la place.\n\nForcer l'armement de l'alarme en ignorant les exceptions non bloquantes (ex. fenêtres ouvertes) d'une tentative d'armement précédente échouée.",
+            "fields": {
+                "code": {
+                    "name": "Code PIN",
+                    "description": "Facultatif. S'il est fourni, il est validé par rapport au code PIN configuré avant de finaliser l'armement forcé. La plupart des appelants n'en ont pas besoin — la tentative d'armement précédente qui a produit le contexte d'armement forcé a déjà validé le code PIN."
+                }
+            }
+        },
+        "force_arm_cancel": {
+            "name": "Annuler l'armement forcé",
+            "description": "Déprécié — utilisez `verisure_owa.force_arm_cancel` à la place.\n\nAnnuler un armement forcé en attente et fermer la notification d'exception d'armement."
+        }
+    },
+    "exceptions": {
+        "invalid_pin_code": {
+            "message": "Code PIN non valide pour {entity_id}"
+        },
+        "unsupported_alarm_mode": {
+            "message": "Ce mode d'alarme n'est pas pris en charge par votre panneau (rejeté : {tried}). Vérifiez les correspondances d'états dans les options de l'intégration (Paramètres → Appareils et services → Verisure OWA → Configurer)."
+        },
+        "unsupported_alarm_mode_subpanel": {
+            "message": "Ce mode d'alarme n'est pas pris en charge par votre panneau (rejeté : {tried}). Il a été désactivé sur ce sous-panneau et ne sera plus proposé."
+        },
+        "no_supported_command": {
+            "message": "Aucune commande compatible trouvée pour ce panneau. Vérifiez les correspondances d'états dans les options de l'intégration (Paramètres → Appareils et services → Verisure OWA → Configurer)."
+        }
+    },
+    "issues": {
+        "orphan_verisure_owa_directory": {
+            "title": "Dossier verisure_owa obsolète",
+            "description": "Un dossier obsolète `verisure_owa` a été laissé dans `{path}` par une mise à jour précédente. Il ne sert plus à rien et peut être supprimé sans risque. Supprimez le dossier et redémarrez Home Assistant pour effacer cette notification."
+        }
+    }
+}
